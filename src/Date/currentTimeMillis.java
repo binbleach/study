@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class currentTimeMillis {
     public static void main(String[] args) {
-        Date b = new Date(1);//自1970年1月1日毫秒数的北京时间8：00,
+        Date b = new Date(100000000);//自1970年1月1日过的毫秒数的北京时间8：00,
         System.out.println(b);
         SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
         String times = time.format(b); //Date转String

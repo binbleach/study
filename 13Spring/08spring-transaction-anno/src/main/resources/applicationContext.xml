@@ -41,7 +41,7 @@
         <property name="dataSource" ref="myDataSource"/>
     </bean>
 
-    <!--开启注解驱动-->
+    <!--开启事务注解驱动-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
 
@@ -49,6 +49,7 @@
         <property name="saleDao" ref="saleDao"/>
         <property name="goodsDao" ref="goodsDao"/>
     </bean>
+
 
 
 </beans>

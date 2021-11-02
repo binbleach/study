@@ -10,7 +10,7 @@ public class MyBatisTest {
     public static void main(String[] args) {
         SqlSession sqlSession = MyBatisUtils.getSqlSession();
         StudentDao dao=sqlSession.getMapper(StudentDao.class);
-        List students=dao.selectStudents();
-        students.forEach(stu -> System.out.println(stu));
+        /*List students=dao.selectStudents();
+        students.forEach(stu -> System.out.println(stu));*/
     }
 }

@@ -1,5 +1,8 @@
 package Multithreading;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class _03Thread {
     public static void main(String[] args) {
         //新建一个线程对象

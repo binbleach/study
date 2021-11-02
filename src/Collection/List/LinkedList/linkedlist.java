@@ -16,6 +16,10 @@ public class linkedlist {
         list.add("B");
         list.add("C");
         list.add("D");
+        list.add(1,"bbb");
+
+        System.out.println(list.get(1));
+
         System.out.println(list);
 
 

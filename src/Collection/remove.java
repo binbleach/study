@@ -18,6 +18,8 @@ public class  remove {
 
         while (a.hasNext()){
             System.out.println(a.next());
+            a.remove();
+            e.remove(a.next());
         }
         System.out.println("---------------------------");
         Iterator d = e.iterator();

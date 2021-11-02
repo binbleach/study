@@ -179,7 +179,100 @@ Nginx主要应用：
     xxx/img
     xxx/images
 
-11、关于访问第一个/开始(不包含http://)之前的都是根，后面加的访问路径在后台文件夹上也要对应
-    如：访问192.168.8.128/myweb  那后台文件就在 设置的root下的myweb下
 
-12、
+11、关于访问第一个/开始(不包含http://)之前的都是根，后面加的访问路径在后台文件夹上也要对应
+    如：访问192.168.8.128/myweb  那后台文件就在 设置的root(如:/opt/static)下的myweb目录下
+
+12、动静分离部署,p2p项目。
+    1、你可一根据课件来不过我这个部不是根据课件来的。
+    2、p2p项目dataservice目录复制到tomcat5的webapps里，这台服务器是提供者，通过dubbo注册中心连接获取
+    3、剩下两个服务器tomcat3、4，把p2p项目里的p2p目录复制过去，这两台台服务器是消费者。
+    4、打开redis、mysql、zookeeper。
+    5、通过配置nginx反向代理实现负载均衡，代理3、4服务器：
+    upstream www.p2p.com{
+	server 192.168.8.128:9300;
+	server 192.168.8.128:9400;
+    }
+    server{
+    	  location /p2p {
+                proxy_pass http://www.p2p.com;
+            }
+    )
+    6、移出3、4tomcat服务器中，webapps目录下的p2p项目的静态文件：js、img、images、css
+    7、把静态文件移动到目录：opt/static/p2p
+
+    8、配置静态文件的代理(这里我理解为拦截器)：
+    upstream www.static.com{
+    	server 192.168.8.128:81;
+    	server 192.168.8.128:82;
+        }
+    server{
+          location ~ .*/(js|img|images|css) {   #注意这里有空格
+                proxy_pass http://www.static.com;
+            }
+    )
+
+    9、配置两个nginx配置文件，用来模仿启动两台nginx:
+        1）设置端口改成三台nginx不一样且上面用到
+            server {
+                    listen       81;
+            }
+        2） 配置拦截器
+            server{
+                location ~ .*/(css|js|img|images) {
+                            root /opt/static;
+                        }
+            }
+    10、ok.启动3台tomcat，三台nginx，一个redis,一个mysql，一个zookeeper就行了
+        注：遇到bug:前面配置的一主二从redis，导致不能写，用redis.conf本来的配置，因为没该bind用不了
+
+13、虚拟主机：虚拟主机，就是把一台物理服务器划分成多个“虚拟”的服务器，这样我们的一台物理服务器就可以
+              当做多个服务器来使用,(端口和域名不能都相同)从而可以配置多个网站。
+    1、两种方式（基于端口一般用了解就行（一般用基于域名，需要dns服务器，不过咱没有，可以配置本地dns镜像
+    2、基于域名的虚拟服务器实现：
+        a）需要部署三个项目北京、天津、南京到三个tomcat服务器
+        b）配置nginx:#配置三个server和负载均衡
+            upstream beijing.myweb.com {
+                    	server  127.0.0.1:9100;
+               		}
+            upstream nanjing.myweb.com {
+                server  127.0.0.1:9200;
+            }
+            upstream tianjin.myweb.com {
+                server  127.0.0.1:9300;
+            }
+
+            server {
+            listen       80;
+            server_name  beijing.myweb.com;
+                location / {
+                    proxy_pass http://beijing.myweb.com;
+                }
+            }
+
+            server {
+                listen       80;
+                server_name  nanjing.myweb.com;
+                    location / {
+                        proxy_pass http://nanjing.myweb.com;
+            }
+            }
+
+            server {
+                listen       80;
+                server_name  tianjin.myweb.com;
+                location / {
+                    proxy_pass http://tianjin.myweb.com;
+            }
+            }
+        c）配置本地dns映射：
+            在C:\Windows\System32\drivers\etc\hosts 加：
+            192.168.235.128 beijing.myweb.com
+            192.168.235.128 nanjing.myweb.com
+            192.168.235.128 tianjin.myweb.com
+    4、上面一样的不过是独立配置：
+        需要在nginx配置文件http下server外加 include + 配置文件路径。
+        配置文件内容：就是上面的内容，叫啥都行。
+
+
+

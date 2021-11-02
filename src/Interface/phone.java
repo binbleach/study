@@ -5,6 +5,7 @@ public class phone implements photo {
         System.out.println("我是照片");
     }
 
+
     public int num(int b){
         return b+a;  //可以直接调用接口里的属性
     }

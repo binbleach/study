@@ -8,5 +8,12 @@ public class Test {
         n1.setAge(18);
         n1.name="刘亦菲";
         System.out.println(n1.name+n1.getAge()+"岁");
+        System.out.println(Test.fun(6));
+
+    }
+    static int fun(int n){
+        if(n==1) return 0;
+        if(n<=3) return 1;
+        return fun(n-1)*fun(n-1)+fun(n-2)*fun(n-2);
     }
 }

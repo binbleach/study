@@ -116,6 +116,7 @@ public class ActivityController extends HttpServlet {
         vo.setTotal((int)map.get("total"));
         PrintJson.printJsonObj(response,vo);
     }
+
     private void delete(HttpServletRequest req, HttpServletResponse resp) {
         String [] params=req.getParameterValues("id");
         ActivityService service = new ActivityServiceImpl();

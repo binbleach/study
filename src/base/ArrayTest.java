@@ -19,8 +19,25 @@ public class ArrayTest {
         //数组遍历，升级
         System.out.println();
         for(int num:arr){
-            System.out.print(num);
+            System.out.println(num);
         }
+
+        System.out.println("=====================");
+        int[] nums={1,0,3,4,0,5,0,0,2};
+        int j = 0;
+        for(int i =0;i<nums.length;i++){
+            if(nums[i]!=0){
+                if(i!=j){
+                    nums[j]=nums[i];
+                    nums[i]=0;
+                }
+                j++;
+            }
+        }
+        for (int num : nums) {
+            System.out.println(num);
+        }
+        System.out.println("=======================");
 
     }
 }
