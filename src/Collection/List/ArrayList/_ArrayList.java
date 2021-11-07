@@ -20,13 +20,14 @@ public class _ArrayList {
         ArrayList arrayList = new ArrayList(); //默认初始化10
         ArrayList arrayList1 = new ArrayList(100);//初始化容量100
 
+
         Collection c = new HashSet();
         c.add(100);
         c.add(200);
         c.add(300);
-
         //将 HashSet集合转为 ArrayList ,也是 Set 和 List的转换
         ArrayList arrayList2 = new ArrayList(c);
+        arrayList2.add(4,5);    //报错，越界
         for(int i=0;i<arrayList2.size();i++){
             System.out.println(arrayList2.get(i));
         }

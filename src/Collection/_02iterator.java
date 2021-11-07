@@ -11,7 +11,7 @@ public class _02iterator {
 
         while(b.hasNext()){  //下一步是否可走
             System.out.println(b.next());  //走下一步并返回next返回值类型必须是Object
-
         }
+
     }
 }

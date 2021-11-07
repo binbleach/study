@@ -21,5 +21,18 @@ public class test {
             list.add(map);
         }
         list.forEach(li-> System.out.println(li));
+        //
+        System.out.println(2==11/4);
+
+        ArrayList<String> list1 = new ArrayList();
+        list1.add("a");
+        list1.add("b");
+        list1.add("a");
+        list1.remove("a");
+        //list1.add(3,300);
+        for(String a:list1 ){
+            System.out.println(a);
+        }
+
     }
 }

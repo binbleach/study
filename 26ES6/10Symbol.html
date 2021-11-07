@@ -27,7 +27,7 @@
         console.log('s3的类型是'+typeof s3);
         console.log(s3===s4); //true相等
 
-        //Symbol的应用场景,给对象加属性
+        //Symbol的应用场景一,给对象加属性
         let game = {
             up:function (){
                 console.log('我是game原有的up方法');
@@ -38,6 +38,7 @@
             up:Symbol(),
             down:Symbol()
         }
+
         //为什么不直接game[Symbol()]呢因为这样创建的属性你无法再调用，所以需要methods对象
         game[methods.up]=function (){
             console.log('我可以改变形状');
@@ -51,18 +52,22 @@
         game.up();
         game[methods.up](); //添加的属性可以通过这样调用
 
-        num();
-        function num(){
-            console.log(10)
+        //Symbol的内置属性 Symbol.hasInstance 作用：当与对象instanceof比较时会调用这个方法
+        class dog{
+            static [Symbol.hasInstance](param){
+                console.log('我被调用了');
+            }
         }
-        /*num2()
-        var num2 = function (){
-            console.log(10)
-        }*/
+        let bird={};
+        console.log(bird instanceof dog);   //fasle
 
-        console.log(num3)
-        let num3 = 10;
+        //Symbol的内置属性2 Symbol.isConcatSpreadable 表示数组concat连接时是否可展开
+        const arr = [1,2,3];
+        const arr2 = [4,5,6];
+        arr2[Symbol.isConcatSpreadable]=false; //设置为false则不展开
+        console.log(arr.concat(arr2)); //1,2,3,array(3)
 
+        //还有很多属性，可以通过设置Symbol来设置对象的属性，自己查文档
 
 
     </script>
