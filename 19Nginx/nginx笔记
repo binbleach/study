@@ -184,7 +184,7 @@ Nginx主要应用：
     如：访问192.168.8.128/myweb  那后台文件就在 设置的root(如:/opt/static)下的myweb目录下
 
 12、动静分离部署,p2p项目。
-    1、你可一根据课件来不过我这个部不是根据课件来的。
+    1、你可一根据课件来不过我这个不是根据课件来的。
     2、p2p项目dataservice目录复制到tomcat5的webapps里，这台服务器是提供者，通过dubbo注册中心连接获取
     3、剩下两个服务器tomcat3、4，把p2p项目里的p2p目录复制过去，这两台台服务器是消费者。
     4、打开redis、mysql、zookeeper。
