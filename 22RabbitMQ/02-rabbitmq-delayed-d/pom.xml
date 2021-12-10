@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.huangjiabin.rabbitmq</groupId>
-    <artifactId>02-rabbitmq-springboot</artifactId>
+    <artifactId>02-rabbitmq-delayed-d</artifactId>
     <version>1.0.0</version>
     <name>02-rabbitmq-springboot</name>
     <description>Demo project for Spring Boot</description>
