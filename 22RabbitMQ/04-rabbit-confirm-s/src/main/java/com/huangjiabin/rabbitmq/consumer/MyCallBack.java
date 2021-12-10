@@ -11,19 +11,25 @@ import javax.annotation.PostConstruct;
 
 @Slf4j
 @Component
+/*
+    1、继承：RabbitTemplate.ConfirmCallback,RabbitTemplate.ReturnsCallback
+    2、写init、confirm、returnedMessage
+    3、添加配置文件，打开发布确认模式和开启消息回退
+*/
 public class MyCallBack implements RabbitTemplate.ConfirmCallback,RabbitTemplate.ReturnsCallback {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
     @PostConstruct
-    //@PostConstruct该注解被用来修饰一个非静态的void（）方法。被@PostConstruct修饰的方法会在服务器加载Servlet的时候运行，并且只会被服务器执行一次。PostConstruct在构造函数之后执行，init（）方法之前执行。
+    //@PostConstruct该注解被用来修饰一个非静态的void（）方法。被@PostConstruct修饰的方法会在服务器加载Servlet的时候运行，
+    // 并且只会被服务器执行一次。PostConstruct在构造函数之后执行，init（）方法之前执行。
     public void init(){
         rabbitTemplate.setConfirmCallback(this);
         rabbitTemplate.setReturnsCallback(this);
     }
 
     @Override
-    /*  交换机确认回调方法
+    /*  回调方法,只要发布消息就会调用回调函数，得知交换机是否接收到消息。
         参数 1 对调消息的ID及相关信息，在发送时设置
         参数 2 交换机是否收到消息 true收到，false未收到
         参数 3 cause未收到原因，如果收到就是null.

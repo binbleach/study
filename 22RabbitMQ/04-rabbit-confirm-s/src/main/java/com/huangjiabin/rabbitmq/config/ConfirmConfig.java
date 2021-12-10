@@ -44,6 +44,7 @@ public class ConfirmConfig {
         return new Queue(WARNING_QUEUE_NAME);
     }
 
+    //备份交换机，扇出类型，没有routingKey
     @Bean("backupExchange")
     public FanoutExchange backupExchange(){
         return new FanoutExchange(BACKUP_EXCHANGE_NAME);
