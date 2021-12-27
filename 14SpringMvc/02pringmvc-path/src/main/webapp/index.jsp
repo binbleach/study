@@ -6,8 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-
 <%--动态获取base--%>
 <%
     String basePath = request.getScheme() + "://" +
@@ -19,8 +17,10 @@
     <title>Title</title>
     <%--base自定义，只针对当前页有效--%>
     <base href="<%=basePath%>"/>
+
 </head>
 <body>
+<%=basePath%>
 <h2>RequestMapping</h2>
 
 <%--关于 开头有没有"/"，

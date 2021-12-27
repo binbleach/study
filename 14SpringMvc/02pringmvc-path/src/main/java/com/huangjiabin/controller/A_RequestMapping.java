@@ -19,7 +19,7 @@ public class A_RequestMapping{
     public ModelAndView some(){
         ModelAndView m=new ModelAndView();
         m.addObject("key1","这里可以是对象");
-        m.addObject("key2","hellosSpringMvc");
+        m.addObject("key2","helloSpringMvc");
         m.setViewName("show");
         return m;
     }
@@ -27,7 +27,7 @@ public class A_RequestMapping{
     @RequestMapping(value="/other.do")
     public ModelAndView other(){
         ModelAndView m=new ModelAndView();
-        m.addObject("key1","这里可以是对象");
+        m.addObject("key1","这里可以是对象2");
         m.addObject("key2","hellosSpringMvc");
         m.setViewName("show");
         return m;

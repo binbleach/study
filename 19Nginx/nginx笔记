@@ -20,8 +20,8 @@ Nginx主要应用：
     1）在sbin目录下运行./nginx
         启动成功，会有一个进程master,一个worker
     2）配置文件启动：./nginx -c /usr/local/nginx/conf/nginx.conf -t
-        如：/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf -t
-        注：后面加个-t 可以检查配置文件是否损坏
+        如：/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx1.conf -t
+        注：后面加个-t 可以检查配置文件是否损坏，想真正启动得去掉t
 
 4、关闭Nginx:
     1）优雅关闭：kill -QUIT 主pid(进程号)
@@ -76,7 +76,8 @@ Nginx主要应用：
                     root   html;
                     index  index.html index.htm;    #配置文件的名称
                 }
-                #/是根路径 root也是根路径，请求用/替代，找文件加上root就好。也就是访问/opt/www/ace下的文件
+                #/是根路径 root也是根路径，请求用/替代，找文件加上root就好。ip/ace/index.html->/opt/www/ace/index.html下的文件
+                #注：不管上面或者下面的地址有没有在后面添加"/"
                 location /ace {
                     root /opt/www;
                     index login.html; #默认欢迎页面
@@ -95,7 +96,7 @@ Nginx主要应用：
 
 7、负载均衡：将请求均匀的分摊到集群中的多个服务器节点上执行.两种方式，一种软件，一种硬件贵好
     1、负载均衡部署  ：
-        a、以上面为起点，解压两个tomcat,两台服务器。
+        a、以上面为起点，解压两个tomcat,两台服务器,一台2，一台3。
 
         b、配置启动一台tomcat端口号，在conf->server.xml
             改一：<Server port="8004" shutdown="SHUTDOWN" debug="0">的8005改为其它的端口。
@@ -273,6 +274,45 @@ Nginx主要应用：
     4、上面一样的不过是独立配置：
         需要在nginx配置文件http下server外加 include + 配置文件路径。
         配置文件内容：就是上面的内容，叫啥都行。
+
+实验室：
+    tomcat1：8005、8080、8009
+    tomcat2：8004、9200、8008
+    tomcat3：8006、9300、8013
+    tomcat4：8007、9400、8014
+    tomcat5：8008、9500、8015
+
+    第一个牛刀小试：root 不需要tomcat，直接启动nginx配置文件为：nginx1.conf，访问：ip/ace/index.html得到linux里/opt/www/ace/index.html
+        location /ace {
+            root /opt/www;
+            index login.html; #默认欢迎页面
+        }
+    第二个负载均衡：proxy_pass 两台tomcat 1和2，一台nginx配置文件为：nginx2.conf
+        upstream www.myweb.com{
+            server 192.168.8.128:9200;
+            server 192.168.8.128:8080;
+        }
+        server{
+            location /myweb {
+                proxy_pass http://www.myweb.com;    #192.168.8.128/myweb 访问得到项目正常
+            }
+        }
+        server{
+            location /myweb {
+                proxy_pass http://www.myweb.com/;    #192.168.8.128/mywebmyweb/ 才能访问得到
+            }
+        }
+
+        server{
+            location /myweb/ {
+                proxy_pass http://www.myweb.com/;    #192.168.8.128/myweb/myweb 才能访问得到
+            }
+        }
+        server{
+            location /myweb/ {
+                proxy_pass http://www.myweb.com;    #192.168.8.128/myweb 访问得到项目正常
+            }
+        }
 
 
 

@@ -18,7 +18,8 @@
         处理ajax用到，处理静态资源也用到-->
     <mvc:annotation-driven/>
 
-    <!-- "/" 路径的第一种解决-->
+    <!-- 在web.xml文件 拦截 “.do”改成 "/" 路径 当访问静态资源会被拦截但是中央处理器处理找不到静态资源-->
+    <!--“/” 的第一种解决-->
     <!--声明了后 ，springmvc 框架会在容器中创建DefaultServletHttpRequestHandler处理器对象。-->
     <!--<mvc:default-servlet-handler/>-->
 
