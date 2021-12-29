@@ -40,22 +40,22 @@
                             rawName:v-指令名   这里是v-big
                             value:  表达式算过的值 */
                 //简写形式，何时会被调用：1、元素和指令成功绑定时会被调用（一上来还没放在页面） 2、指令所在的模板被重新解析时
-                big(element,binding){
+                /*big(element,binding){
                     element.innerText=binding.value*10;
-                },
+                },*/
                 //全写形式
                 fbind:{
                     //指令与元素绑定时调用
-                    bind(){
-
+                    bind(element,binding){
+                        element.value=binding.value
                     },
                     //指令所在元素被插入页面时调用
                     inserted(element,binding){
                         element.focus();
                     },
                     //指令所在的模板被重新解析时调用
-                    update(){
-
+                    update(element,binding){
+                        element.value=binding.value
                     }
                 }
             }
@@ -71,6 +71,7 @@
             },
             update(element, binding) {
             }
+            })
           2、简写
               Vue.directive('big',function(){
 
