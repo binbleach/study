@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo">
     <h2>{{name}}</h2>
     <h2>{{age}}</h2>
   </div>
@@ -16,3 +16,8 @@
     },
   }
 </script>
+<style scoped>
+  .demo{
+    background-color: #5588aa;
+  }
+</style>

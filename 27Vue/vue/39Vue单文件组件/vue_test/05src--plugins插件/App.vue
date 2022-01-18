@@ -17,7 +17,7 @@ export default {
   },
   data(){
     return{
-      msg:"你好呀傻逼04src"
+      msg:"你好呀傻逼05src"
     }
   },
   methods: {
