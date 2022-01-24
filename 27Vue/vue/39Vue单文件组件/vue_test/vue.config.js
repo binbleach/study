@@ -16,7 +16,17 @@ module.exports = {
             //entry:'11src--全局事件总线/main.js'
             //entry:'12src--TodoList全局事件总线/main.js'
             //entry:'13src--消息得订阅与发布/main.js'
-            entry:'14src--TodoList消息的订阅与发布/main.js'
+            //entry:'14src--TodoList消息的订阅与发布/main.js'
+            //entry:'15src--动画/main.js'
+            //entry:'16src--TodoList动画/main.js'
+            //entry:'18src--github搜索案例/main.js'
+            //entry:'19src--vue-resource发送ajax/main.js'
+            //entry:'20src--插槽/main.js'
+            //entry:'21src--vue实现计数案例/main.js'
+            //entry:'22src--vuex/main.js'
+            //entry:'23src--vuex多组件数据共享之模块化/main.js'
+            //entry:"24src--路由/main.js"
+            entry:"25src--编程式路由导航/main.js"
         },
     },
     lintOnSave:false //关闭语法检查

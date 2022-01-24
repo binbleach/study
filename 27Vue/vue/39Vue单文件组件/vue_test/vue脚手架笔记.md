@@ -171,5 +171,74 @@ See [配置参考](https://cli.vuejs.org/config/).
         
     
 ```
+###Vue封装的过度与动画
+```
+    1、作用：在插入、更新或者一处DOM元素时，在适合的时候给元素添加样式类名
+    2、写法：
+        元素进入屏幕的六个场景：
+              1、进入起点：.tran2-enter
+              2、进入终点：.tran2-enter-to
+              3、进入整个：.tran2-enter-active
+              4、离开起点：.tran2-leave
+              5、离开终点：.tran2-leave-to
+              6、离开整个：.tran2-leave-active.
+              注：1和5、2和4、3和6，相互对应
+    注：多个标签样式得用transition-group标签
+```
+###17AJAX跨域
+```
+    1、xhr：new XMLHttpRequest() xhr.open() xhr.send()
+    2、jQuery：封装了xhr更多的还是对DOM的操作封装
+    3、axios：比jQuery小，也封装了jQuery
+    4、fetch：和xhr平级
+    跨域问题：浏览器因为同源限制，不给从后端返回请求到前端的数据。服务器（后端）之间没有跨域问题
+    跨域问题解决:
+    1、cors：需要后端
+    2、jsonp：需要前后端配合
+    3、代理服务器：nginx、Vue-cli
+
+    Vue-cli解决跨域问题：
+    方式一：
+        1）配置文件上配置
+        module.exports={
+            devServer:{
+                proxy:'访问三方接口服务器的url'
+            }
+        }
+        2）写ajax时访问代理服务器，也就是本机服务器就好了。
+            注：如果代理服务器就有资源则不再去三方接口服务器拿
+            缺点：不能配置多个三方接口服务器，不能配置到底走不走代理
+    方式二：
+        1）配置文件上配置
+        module.exports={
+            devServer:{
+                proxy:{
+                    '/myweb':{        //代理服务器拦截前端带myweb的请求。如：http:localhost:8080/myweb/student
+                        target:'http://localhost:5000',    //拦截后代替前端去访问三方服务器。如：http:localhost:5000/myweb/student
+                        pathRewrite:{'^/myweb':''}  //重写源路径，比如去掉myweb。http://loccalhost:5000/student
+                        ws:true         //websocket
+                        changeOrigin:true   //控制请求头中host值。谎报后三方服务器就会以为是localhost:5000的ip端口请求。默认为true
+                    }
+                    '/myweb2':{       
+                        target:'http://localhost:5000',    
+                        pathRewrite:{'^/myweb2':''}  
+                        ws:true       
+                        changeOrigin:true  
+                    }
+                }
+            }
+        }
+        2）没有方式一的缺点
+        
+```
+###插槽
+```
+    1、作用：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于 父组件 ===>子组件
+    2、分类：默认插槽、具名插槽、作用域插槽
+    3、使用方式：
+       
+```
+
+
 
 

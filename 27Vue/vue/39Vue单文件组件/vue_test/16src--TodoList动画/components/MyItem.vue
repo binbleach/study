@@ -1,4 +1,6 @@
 <template>
+<!--还可以在MyList组件上加，不过得用transition-group-->
+  <transition name="tran1" appear>
   <li>
     <label>
       <input type="checkbox" :checked="todo.done" @click="handleCheck(todo.id)"/>
@@ -11,7 +13,9 @@
     <button class="btn btn-danger" @click="handleDelete(todo.id)" >删除</button>
     <button class="btn btn-edit" @click="handleEdit(todo)" >编辑</button>
   </li>
+  </transition>
 </template>
+
 
 <!--
     关于选中和被选中还有第二种实现方案，就是直接v-model="todo.done"
@@ -105,5 +109,19 @@ li:hover{
 }
 li:hover button{
   display: block;
+}
+.tran1-enter-active{
+  animation: active1 1s;
+}
+.tran1-leave-active{
+  animation: active1 1s reverse;
+}
+@keyframes active1 {
+  from{
+    transform: translateX(100%);
+  }
+  to{
+    transform: translateX(0);
+  }
 }
 </style>
