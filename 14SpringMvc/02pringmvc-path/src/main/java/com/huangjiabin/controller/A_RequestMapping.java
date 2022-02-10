@@ -15,21 +15,29 @@ public class A_RequestMapping{
     *             不加是get，post都可以。
     * */
 
-    @RequestMapping(value = "/some.do",method = RequestMethod.GET)
+    @RequestMapping(value = "some.do",method = RequestMethod.GET)
     public ModelAndView some(){
         ModelAndView m=new ModelAndView();
         m.addObject("key1","这里可以是对象");
         m.addObject("key2","helloSpringMvc");
-        m.setViewName("show");
+        m.setViewName("redirect:/test.html");
+        return m;
+    }
+    @RequestMapping(value = "some2.do",method = RequestMethod.POST)
+    public ModelAndView some2(){
+        ModelAndView m=new ModelAndView();
+        m.addObject("key1","这里可以是对象");
+        m.addObject("key2","helloSpringMvc");
+        m.setViewName("forward:some3.do");
+        return m;
+    }
+    @RequestMapping(value = "some3.do",method = RequestMethod.GET)
+    public ModelAndView some3(){
+        ModelAndView m=new ModelAndView();
+        m.addObject("key1","这里可以是对象");
+        m.addObject("key2","helloSpringMvc");
+        m.setViewName("forward:/test.html");
         return m;
     }
 
-    @RequestMapping(value="/other.do")
-    public ModelAndView other(){
-        ModelAndView m=new ModelAndView();
-        m.addObject("key1","这里可以是对象2");
-        m.addObject("key2","hellosSpringMvc");
-        m.setViewName("show");
-        return m;
-    }
 }

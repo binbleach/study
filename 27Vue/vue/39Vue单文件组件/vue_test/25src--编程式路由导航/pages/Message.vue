@@ -4,7 +4,7 @@
     <li v-for="mesg in messageList" :key="mesg.id">
       <router-link :to="`/home/message/detail/${mesg.id}/${mesg.message}`">{{mesg.title}}</router-link>&nbsp;&nbsp;
       <button @click="pushShow(mesg)">push查看</button>
-      <button>replace查看</button>
+      <button @click="replaceShow(mesg)">replace查看</button>
     </li>
   </ul>
   <hr>
@@ -25,8 +25,18 @@ export default {
     }
   },
   methods:{
+    /*这种写法比上面更灵活*/
     pushShow(m){
       this.$router.push({
+        name:'xiangqing',
+        query:{
+          id:m.id,
+          message:m.message
+        }
+      })
+    },
+    replaceShow(m){
+      this.$router.replace({
         name:'xiangqing',
         query:{
           id:m.id,

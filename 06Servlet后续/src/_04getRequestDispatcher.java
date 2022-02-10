@@ -17,7 +17,21 @@ import java.io.IOException;
 public class _04getRequestDispatcher extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher re=req.getRequestDispatcher("Welcome");//这里倒是有没有/都可以
+        /*
+            1、浏览器请求路径：http://localhost:8080/myweb/1/RequestDispatcher
+            2、服务器内部请求转发起路径：/Welcome
+            3、浏览器获得资源路径：http://localhost:8080/myweb/Welcome
+            2、服务器内部请求转发起路径：Welcome
+            3、浏览器获得资源路径：http://localhost:8080/myweb/1/Welcome
+            4、浏览器地址栏路径：http://localhost:8080/myweb/1/RequestDispatcher
+
+            结论：
+            1、请求转发地址不变
+            2、请求转发带 ”/“代表应用根路径 有上下文的概念 http://localhost:8080/myweb/
+            3、请求转发不带 ”/“访问和请求转发不带 ”/“访问时一致，
+                都是表示当前资源RequestDispatcher前面的相对路径http://localhost:8080/myweb/1/
+        */
+        RequestDispatcher re=req.getRequestDispatcher("/Welcome");//这里倒是有没有/都可以
         re.forward(req,resp);
     }
 }

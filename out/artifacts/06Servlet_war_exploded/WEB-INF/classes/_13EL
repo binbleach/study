@@ -33,7 +33,7 @@
                    application-------------------applicationScope
                    session-----------------------sessionScope
                    request-----------------------requestScope
-                   pageCotnext-----------------pageScope
+                   pageContext-----------------pageScope
 
 五。EL表达式将对象中属性内容写入到响应体
 

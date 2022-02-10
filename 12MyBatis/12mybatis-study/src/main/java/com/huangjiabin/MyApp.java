@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class MyApp {
+public class                                                                                                                                                          MyApp {
     //一般使用mybatis,这里没有封装util，也没有用到 SqlSession.mapper(接口.class)
     public static void main(String[] args) throws IOException {
         //1.mybatis 主配置文件,主配置文件名称，是从类路径的根下找的target/class

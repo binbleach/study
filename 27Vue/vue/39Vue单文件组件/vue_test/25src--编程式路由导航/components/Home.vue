@@ -4,7 +4,6 @@
     <div>
       <ul class="nav nav-tabs">
         <li>
-          <!--replace，全写：:replace="true" ,控制路由跳转时操作浏览器历史记录的模式，true为覆盖前一个跳转-->
           <router-link replace class="list-group-item" active-class="active" to="/home/news">News</router-link>
         </li>
         <li>

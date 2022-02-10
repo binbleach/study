@@ -26,7 +26,12 @@ module.exports = {
             //entry:'22src--vuex/main.js'
             //entry:'23src--vuex多组件数据共享之模块化/main.js'
             //entry:"24src--路由/main.js"
-            entry:"25src--编程式路由导航/main.js"
+            //entry:"25src--编程式路由导航/main.js"
+            //entry:"26src--缓存路由组件之两个钩子/main.js"
+            //entry:"27src--全局前后置路由守卫和独享路由守卫/main.js"
+            //entry:"28src--组件内路由守卫/main.js"
+            //entry:"29src--history模式和hash模式/main.js"
+            entry:"30src--element-ui/main.js"
         },
     },
     lintOnSave:false //关闭语法检查

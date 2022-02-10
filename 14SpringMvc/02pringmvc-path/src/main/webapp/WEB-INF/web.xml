@@ -24,7 +24,7 @@
   <!--换成斜杠静态资源交给DisPatcherServlet管理-->
   <servlet-mapping>
     <servlet-name>springmvc</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
 
   

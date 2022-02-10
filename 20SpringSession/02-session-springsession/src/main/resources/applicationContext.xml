@@ -21,7 +21,7 @@
     </bean>
 
     <!--
-        设置Cook ie的域名为根域名 web.com
+        设置Cookie的域名为根域名 web.com
         注意:域名要和hosts文件中配置的域名后面一样
     -->
     <bean id="defaultCookieSerializer" class="org.springframework.session.web.http.DefaultCookieSerializer">

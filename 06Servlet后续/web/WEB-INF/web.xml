@@ -22,7 +22,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>sendRedirect</servlet-name>
-        <url-pattern>/sendRedirect</url-pattern>
+        <url-pattern>/1/sendRedirect</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>RequestDispatcher</servlet-name>
@@ -30,7 +30,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
-        <url-pattern>/RequestDispatcher</url-pattern>
+        <url-pattern>/1/RequestDispatcher</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ServletContext</servlet-name>

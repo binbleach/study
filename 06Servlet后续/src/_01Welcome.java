@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class _01Welcome extends HttpServlet {
 /*默认欢迎资源文件设置
-         1.  认欢迎资源文件：tomcat针对用户对当前网站发起默认请求，自动返回资源文件
+         1.  默认欢迎资源文件：tomcat针对用户对当前网站发起默认请求，自动返回资源文件
          2.  默认请求：
            1）正常请求：
              http://localhost:8080/myWeb/one.html
